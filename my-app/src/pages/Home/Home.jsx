@@ -467,14 +467,41 @@ function About() {
   );
 }
 
-// ── Be Our First Client ────────────────────────────────────────────────────────
+// ── Why Trust Us ──────────────────────────────────────────────────────────────
 function Testimonials() {
-  const perks = [
-    { icon: "🎯", title: "Personalised Attention", desc: "As an early client, you get direct access to our founders and a truly personalised travel experience." },
-    { icon: "💰", title: "Best Launch Pricing", desc: "We are offering our most competitive rates to our first clients as we build our reputation." },
-    { icon: "🤝", title: "Relationship First", desc: "We are not chasing volume — we want to build long-term relationships one journey at a time." },
-    { icon: "⚡", title: "Zero Hassle Booking", desc: "Fast, clear, and fully assisted booking with transparent pricing and no hidden charges." },
+  const promises = [
+    {
+      icon: "🧭",
+      title: "Expert Travel Knowledge",
+      desc: "Our team has deep expertise in domestic and international travel — from flights and hotels to visas, insurance, and religious tours. We know travel inside out.",
+    },
+    {
+      icon: "💬",
+      title: "Always Reachable",
+      desc: "Got a question at midnight before your trip? We are available 24 × 7 on call and WhatsApp. You will never be left without support when you need it most.",
+    },
+    {
+      icon: "💰",
+      title: "Transparent Pricing",
+      desc: "No surprise charges, no hidden fees. What we quote is what you pay. We believe trust is built through honesty — and that starts with the bill.",
+    },
+    {
+      icon: "🎯",
+      title: "Your Trip, Your Way",
+      desc: "We don't believe in one-size-fits-all packages. Every itinerary is built around your preferences, budget, and schedule — nothing more, nothing less.",
+    },
+    {
+      icon: "⚡",
+      title: "Fast & Reliable Booking",
+      desc: "Quick confirmations, instant updates, and zero follow-up needed. We handle all the back-and-forth so your experience is smooth from day one.",
+    },
+    {
+      icon: "🤝",
+      title: "Personal Commitment",
+      desc: "You won't be passed between agents. One dedicated person handles your entire journey — so you always know who to call and nothing gets lost.",
+    },
   ];
+
   return (
     <section style={{ background: `linear-gradient(135deg,${C.royal},${C.blue})`, padding: "96px 0", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: `linear-gradient(90deg,transparent,${C.gold}44,transparent)` }} />
@@ -485,44 +512,49 @@ function Testimonials() {
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative", zIndex: 2 }}>
         {/* Heading */}
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          style={{ textAlign: "center", marginBottom: 64 }}>
-          <p className="out" style={{ color: C.gold, fontSize: 10, letterSpacing: "4px", textTransform: "uppercase", marginBottom: 14 }}>
-            A Fresh Start
-          </p>
-          <h2 className="cg" style={{ fontSize: "clamp(38px,5vw,64px)", fontWeight: 300, color: C.cream, fontStyle: "italic", marginBottom: 20 }}>
-            Be Our <span style={{ color: C.gold }}>First Client</span>
-          </h2>
-          <p className="out" style={{ color: "rgba(232,238,255,0.55)", fontSize: 16, maxWidth: 540, margin: "0 auto", lineHeight: 1.8, fontWeight: 300 }}>
-            We are just getting started — and that means every client gets our absolute best. No shortcuts, no templates. Just genuine, hand-crafted travel planning built around you.
+          style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 20, marginBottom: 60 }}>
+          <div>
+            <p className="out" style={{ color: C.gold, fontSize: 10, letterSpacing: "4px", textTransform: "uppercase", marginBottom: 14 }}>
+              Why Choose Us
+            </p>
+            <h2 className="cg" style={{ fontSize: "clamp(38px,5vw,64px)", fontWeight: 300, color: C.cream, fontStyle: "italic", lineHeight: 1.1 }}>
+              Our Commitment<br /><span style={{ color: C.gold }}>To You</span>
+            </h2>
+          </div>
+          <p className="out" style={{ color: "rgba(232,238,255,0.5)", fontSize: 15, maxWidth: 360, lineHeight: 1.8, fontWeight: 300 }}>
+            We may be new, but our standards aren't. Here is exactly what you can count on every single time you travel with us.
           </p>
         </motion.div>
 
-        {/* Perks grid */}
-        <div className="three-col" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 18, marginBottom: 64 }}>
-          {perks.map((p, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -6 }}
-              style={{ padding: "28px 22px", background: "rgba(8,15,36,0.45)", border: "1px solid rgba(201,168,76,0.16)",
-                borderRadius: 4, backdropFilter: "blur(12px)", textAlign: "center" }}>
-              <div style={{ fontSize: 32, marginBottom: 14 }}>{p.icon}</div>
+        {/* Promise cards */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16, marginBottom: 56 }}
+          className="three-col">
+          {promises.map((p, i) => (
+            <motion.div key={i}
+              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+              whileHover={{ y: -6, borderColor: "rgba(201,168,76,0.4)" }}
+              style={{ padding: "28px 24px", background: "rgba(8,15,36,0.45)",
+                border: "1px solid rgba(201,168,76,0.14)", borderRadius: 4,
+                backdropFilter: "blur(12px)", transition: "border 0.3s" }}>
+              <div style={{ fontSize: 30, marginBottom: 14 }}>{p.icon}</div>
               <h4 className="out" style={{ color: C.cream, fontSize: 14, fontWeight: 600, marginBottom: 10 }}>{p.title}</h4>
-              <p className="out" style={{ color: "rgba(232,238,255,0.5)", fontSize: 13, lineHeight: 1.7, fontWeight: 300 }}>{p.desc}</p>
+              <p className="out" style={{ color: "rgba(232,238,255,0.5)", fontSize: 13, lineHeight: 1.75, fontWeight: 300 }}>{p.desc}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* CTA banner */}
-        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+        {/* CTA strip */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 24,
-            padding: "40px 48px", background: "rgba(8,15,36,0.5)", border: "1px solid rgba(201,168,76,0.25)",
-            borderRadius: 6, backdropFilter: "blur(16px)" }}>
+            padding: "36px 44px", background: "rgba(8,15,36,0.5)",
+            border: "1px solid rgba(201,168,76,0.22)", borderRadius: 6, backdropFilter: "blur(16px)" }}>
           <div>
             <p className="out" style={{ color: C.gold, fontSize: 10, letterSpacing: "3px", textTransform: "uppercase", marginBottom: 8 }}>
-              Ready to travel?
+              Let's get started
             </p>
-            <h3 className="cg" style={{ color: C.cream, fontSize: 32, fontWeight: 300, fontStyle: "italic", lineHeight: 1.2 }}>
-              Let's plan your first journey<br />together — reach out today.
+            <h3 className="cg" style={{ color: C.cream, fontSize: 30, fontWeight: 300, fontStyle: "italic", lineHeight: 1.3 }}>
+              Tell us where you want to go —<br />we'll take care of everything else.
             </h3>
           </div>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
