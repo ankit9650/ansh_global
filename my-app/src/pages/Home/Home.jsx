@@ -23,27 +23,27 @@ const C = {
 };
 
 const DESTINATIONS = [
-  { name: "Paris", sub: "France", tag: "Romance", img: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=85" },
-  { name: "Dubai", sub: "UAE", tag: "Luxury", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=85" },
-  { name: "Maldives", sub: "Indian Ocean", tag: "Escape", img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85" },
-  { name: "Kedarnath", sub: "Uttarakhand", tag: "Spiritual", img: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=85" },
-  { name: "Singapore", sub: "Southeast Asia", tag: "Urban", img: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=85" },
+  { name: "Manali", sub: "Himachal Pradesh", tag: "Adventure", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=85" },
+  { name: "Kerala", sub: "God's Own Country", tag: "Nature", img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=85" },
+  { name: "Goa", sub: "Beach Paradise", tag: "Leisure", img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=85" },
+  { name: "Manali", sub: "Himachal Pradesh", tag: "Adventure", img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=85" },
+  { name: "Varanasi", sub: "Uttar Pradesh", tag: "Pilgrim", img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800&q=85" },
   { name: "Rajasthan", sub: "India", tag: "Heritage", img: "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=85" },
 ];
 
 const SERVICES = [
-  { icon: "✈", num: "01", title: "Flight Booking", desc: "Domestic & international flights at the best prices with instant confirmation." },
-  { icon: "🚂", num: "02", title: "Rail Booking", desc: "Train tickets including Tatkal assistance for last-minute journeys." },
-  { icon: "🏨", num: "03", title: "Hotel Reservations", desc: "Budget to luxury stays curated for your comfort and preferences." },
-  { icon: "🌍", num: "04", title: "Holiday Packages", desc: "Fully customised tour packages tailored to your dream vacation." },
-  { icon: "🛕", num: "05", title: "Religious Tours", desc: "Char Dham, Kedarnath & other sacred pilgrimage journeys." },
-  { icon: "💼", num: "06", title: "Corporate Travel", desc: "End-to-end corporate travel management with MIS reporting." },
-  { icon: "📋", num: "07", title: "Visa Assistance", desc: "Hassle-free visa processing & travel insurance guidance." },
-  { icon: "👥", num: "08", title: "Group Travel", desc: "Conference & group planning with dedicated account managers." },
+  { icon: "✈", num: "01", title: "Flight Booking", desc: "Domestic flights across India at the best rates with instant confirmation." },
+  { icon: "🚂", num: "02", title: "Rail Booking", desc: "Train tickets including Tatkal assistance — no queues, no stress." },
+  { icon: "🏨", num: "03", title: "Hotel Reservations", desc: "Budget to luxury stays handpicked for comfort across India." },
+  { icon: "🛕", num: "04", title: "Pilgrimage Tours", desc: "Char Dham, Kedarnath, Vaishno Devi, Tirupati & all sacred journeys." },
+  { icon: "🏔", num: "05", title: "Hill Station Packages", desc: "Manali, Shimla, Mussoorie, Nainital — crafted mountain getaways." },
+  { icon: "🌴", num: "06", title: "Beach & Leisure Tours", desc: "Goa, Kerala, Andaman — relaxing packages for every budget." },
+  { icon: "👥", num: "07", title: "Group & Family Tours", desc: "Special group discounts and family-friendly itineraries across India." },
+  { icon: "💼", num: "08", title: "Corporate Travel", desc: "End-to-end corporate travel with billing & MIS reporting." },
 ];
 
 const STATS = [
-  { val: "100+", label: "Destinations Covered" },
+  { val: "100+", label: "Indian Destinations" },
   { val: "50+", label: "Packages Available" },
   { val: "24/7", label: "Expert Support" },
   { val: "0", label: "Hidden Charges" },
@@ -125,7 +125,7 @@ function Navbar({ active }) {
     window.addEventListener("scroll", h);
     return () => window.removeEventListener("scroll", h);
   }, []);
-  const links = ["Home", "Services", "Destinations", "About", "Contact"];
+  const links = ["Home", "Services", "Packages", "Destinations", "About", "Contact"];
   return (
     <motion.header initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.7, ease: [0.16,1,0.3,1] }}
       style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
@@ -236,7 +236,7 @@ function Hero() {
         </motion.h1>
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.85 }}
           className="out" style={{ color: "rgba(232,238,255,0.62)", fontSize: 17, maxWidth: 500, lineHeight: 1.85, marginBottom: 44, fontWeight: 300 }}>
-          We are a new travel company with a simple mission — to make every journey seamless, affordable, and unforgettable, right from the very first booking.
+          Discover the beauty of India — from the sacred peaks of the Himalayas to the serene backwaters of Kerala. We plan it all, so you just enjoy the journey.
         </motion.p>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}
           style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
@@ -363,6 +363,217 @@ function Services() {
   );
 }
 
+
+// ── Featured Packages ──────────────────────────────────────────────────────────
+function Packages() {
+  const [active, setActive] = useState(0);
+
+  const pkgs = [
+    {
+      id: 0,
+      badge: "🛕 Spiritual",
+      name: "Char Dham Yatra 2026",
+      tagline: "Divine Journey to the Sacred Himalayas",
+      duration: "9 Nights / 10 Days",
+      pickup: "Delhi / Haridwar / Rishikesh",
+      phone: "8287563095",
+      color: "#c9a84c",
+      img: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=900&q=85",
+      dhams: ["Yamunotri", "Gangotri", "Kedarnath", "Badrinath"],
+      includes: [
+        "Deluxe / Luxury Hotel Stay",
+        "Pure Veg Meals — Breakfast & Dinner",
+        "Comfortable Cab / Tempo Traveller",
+        "VIP Darshan Assistance*",
+        "Experienced Tour Manager",
+        "Medical Support Guidance",
+        "All Transfers & Sightseeing",
+      ],
+      special: [
+        "🚁 Helicopter Package Available (Kedarnath)",
+        "👨‍👩‍👧 Family & Senior Citizen Friendly",
+        "👥 Group Yatra Special Discounts",
+        "🛡️ Travel Insurance Assistance",
+      ],
+      note: "Duration customizable as per your convenience.",
+    },
+    {
+      id: 1,
+      badge: "🌴 Nature & Leisure",
+      name: "Premium Kerala Tour",
+      tagline: "God's Own Country",
+      duration: "Customizable",
+      pickup: "Kochi Airport / Railway Station",
+      phone: "8287563095",
+      color: "#2a7d4f",
+      img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=900&q=85",
+      dhams: ["Munnar", "Alleppey", "Thekkady", "Kovalam"],
+      includes: [
+        "Budget / Deluxe / Luxury Hotel Stay",
+        "Daily Breakfast & Dinner",
+        "Private Houseboat Stay (1 Night)",
+        "AC Car or Private Cab",
+        "Pickup & Drop Facility",
+        "Sightseeing by Cab",
+        "Honeymoon Room Decoration",
+        "24×7 Travel Support",
+      ],
+      special: [
+        "💑 Honeymoon Special Packages",
+        "👨‍👩‍👧 Family Friendly Itineraries",
+        "🌿 Backwater Houseboat Experience",
+        "📅 Limited Season Offer — Book Early",
+      ],
+      note: "Kerala ki khushboo aur sukoon ka lutf uthaiye!",
+    },
+  ];
+
+  const pkg = pkgs[active];
+
+  return (
+    <section id="packages" style={{ background: C.navy, padding: "96px 0", position: "relative", overflow: "hidden" }}>
+      <div style={{ position: "absolute", top: "10%", right: "0", width: 500, height: 500,
+        background: "radial-gradient(circle,rgba(201,168,76,0.05),transparent)", borderRadius: "50%", pointerEvents: "none" }} />
+
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
+        {/* Heading */}
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          style={{ marginBottom: 48 }}>
+          <p className="out" style={{ color: C.gold, fontSize: 10, letterSpacing: "4px", textTransform: "uppercase", marginBottom: 14 }}>Current Packages</p>
+          <h2 className="cg" style={{ fontSize: "clamp(40px,5vw,68px)", fontWeight: 300, color: C.cream, fontStyle: "italic", lineHeight: 1.1 }}>
+            Featured <span style={{ color: C.gold }}>Tours</span>
+          </h2>
+        </motion.div>
+
+        {/* Tab switcher */}
+        <div style={{ display: "flex", gap: 12, marginBottom: 36, flexWrap: "wrap" }}>
+          {pkgs.map((p, i) => (
+            <motion.button key={i} onClick={() => setActive(i)} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+              className="out"
+              style={{
+                padding: "10px 24px", borderRadius: 3, border: "none", cursor: "pointer",
+                fontWeight: 600, fontSize: 13, letterSpacing: "0.5px", transition: "all 0.3s",
+                background: active === i ? `linear-gradient(135deg,${C.gold},${C.goldDark})` : "rgba(232,238,255,0.07)",
+                color: active === i ? C.navy : "rgba(232,238,255,0.6)",
+                boxShadow: active === i ? "0 4px 20px rgba(201,168,76,0.35)" : "none",
+              }}>
+              {p.badge} {p.name}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Package card */}
+        <AnimatePresence mode="wait">
+          <motion.div key={active}
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.45 }}
+            style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, borderRadius: 8, overflow: "hidden",
+              border: "1px solid rgba(201,168,76,0.2)", boxShadow: "0 40px 100px rgba(0,0,0,0.4)" }}
+            className="two-col">
+
+            {/* Left — image + header */}
+            <div style={{ position: "relative", minHeight: 520 }}>
+              <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${pkg.img})`,
+                backgroundSize: "cover", backgroundPosition: "center" }} />
+              <div style={{ position: "absolute", inset: 0,
+                background: "linear-gradient(to top,rgba(8,15,36,0.97) 0%,rgba(8,15,36,0.5) 50%,rgba(8,15,36,0.15) 100%)" }} />
+
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "36px 32px" }}>
+                <div style={{ display: "inline-block", padding: "4px 14px", borderRadius: 2, marginBottom: 14,
+                  background: `rgba(201,168,76,0.9)` }}>
+                  <span className="out" style={{ color: C.navy, fontSize: 10, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase" }}>
+                    {pkg.badge}
+                  </span>
+                </div>
+                <h3 className="cg" style={{ color: C.cream, fontSize: 38, fontWeight: 400, fontStyle: "italic", lineHeight: 1.15, marginBottom: 6 }}>
+                  {pkg.name}
+                </h3>
+                <p className="cg" style={{ color: C.gold, fontSize: 18, fontStyle: "italic", fontWeight: 300, marginBottom: 20 }}>
+                  {pkg.tagline}
+                </p>
+                {/* Stops */}
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 20 }}>
+                  {pkg.dhams.map((d, i) => (
+                    <span key={i} className="out"
+                      style={{ padding: "4px 12px", background: "rgba(232,238,255,0.1)", border: "1px solid rgba(232,238,255,0.2)",
+                        borderRadius: 2, color: C.cream, fontSize: 11, letterSpacing: "0.5px" }}>
+                      {d}
+                    </span>
+                  ))}
+                </div>
+                <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
+                  <div>
+                    <p className="out" style={{ color: "rgba(201,168,76,0.6)", fontSize: 9, letterSpacing: "2px", textTransform: "uppercase", marginBottom: 3 }}>Duration</p>
+                    <p className="out" style={{ color: C.cream, fontSize: 13, fontWeight: 600 }}>⏱ {pkg.duration}</p>
+                  </div>
+                  <div>
+                    <p className="out" style={{ color: "rgba(201,168,76,0.6)", fontSize: 9, letterSpacing: "2px", textTransform: "uppercase", marginBottom: 3 }}>Pickup</p>
+                    <p className="out" style={{ color: C.cream, fontSize: 13, fontWeight: 600 }}>📍 {pkg.pickup}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right — details */}
+            <div style={{ background: `linear-gradient(160deg,${C.navyLight},${C.royal})`, padding: "40px 36px", overflowY: "auto" }}>
+              {/* Includes */}
+              <p className="out" style={{ color: C.gold, fontSize: 10, letterSpacing: "3px", textTransform: "uppercase", marginBottom: 16 }}>
+                ✦ Package Includes
+              </p>
+              <div style={{ marginBottom: 28 }}>
+                {pkg.includes.map((item, i) => (
+                  <motion.div key={i} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    style={{ display: "flex", alignItems: "flex-start", gap: 10, marginBottom: 10 }}>
+                    <span style={{ color: C.gold, fontSize: 14, marginTop: 1, flexShrink: 0 }}>✓</span>
+                    <p className="out" style={{ color: "rgba(232,238,255,0.75)", fontSize: 13, lineHeight: 1.5 }}>{item}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Special */}
+              <p className="out" style={{ color: C.gold, fontSize: 10, letterSpacing: "3px", textTransform: "uppercase", marginBottom: 14 }}>
+                ✦ Special Facilities
+              </p>
+              <div style={{ marginBottom: 28 }}>
+                {pkg.special.map((item, i) => (
+                  <p key={i} className="out"
+                    style={{ color: "rgba(232,238,255,0.7)", fontSize: 13, marginBottom: 8, lineHeight: 1.5 }}>{item}</p>
+                ))}
+              </div>
+
+              {/* Note */}
+              <div style={{ padding: "14px 18px", background: "rgba(201,168,76,0.08)",
+                border: "1px solid rgba(201,168,76,0.2)", borderRadius: 4, marginBottom: 28 }}>
+                <p className="cg" style={{ color: C.gold, fontSize: 15, fontStyle: "italic", fontWeight: 300 }}>"{pkg.note}"</p>
+              </div>
+
+              {/* CTA */}
+              <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <motion.a href={`https://wa.me/91${pkg.phone}?text=Hi! I am interested in the ${pkg.name} package.`}
+                  target="_blank" rel="noopener noreferrer" className="out"
+                  whileHover={{ scale: 1.04, boxShadow: "0 8px 30px rgba(201,168,76,0.45)" }}
+                  style={{ flex: 1, padding: "14px 20px", background: `linear-gradient(135deg,${C.gold},${C.goldDark})`,
+                    color: C.navy, fontWeight: 700, fontSize: 12, letterSpacing: "1.5px", textTransform: "uppercase",
+                    textDecoration: "none", borderRadius: 3, textAlign: "center" }}>
+                  💬 Book on WhatsApp
+                </motion.a>
+                <motion.a href={`tel:+91${pkg.phone}`} className="out"
+                  whileHover={{ scale: 1.04 }}
+                  style={{ flex: 1, padding: "14px 20px", border: "1px solid rgba(201,168,76,0.35)",
+                    color: C.cream, fontWeight: 500, fontSize: 12, letterSpacing: "1.5px", textTransform: "uppercase",
+                    textDecoration: "none", borderRadius: 3, textAlign: "center", background: "rgba(232,238,255,0.04)" }}>
+                  📞 {pkg.phone}
+                </motion.a>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
+
 // ── Destinations ───────────────────────────────────────────────────────────────
 function Destinations() {
   const [hov, setHov] = useState(null);
@@ -370,9 +581,9 @@ function Destinations() {
     <section id="destinations" style={{ background: C.navyMid, padding: "96px 0" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px" }}>
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ marginBottom: 52 }}>
-          <p className="out" style={{ color: C.gold, fontSize: 10, letterSpacing: "4px", textTransform: "uppercase", marginBottom: 14 }}>Explore the World</p>
+          <p className="out" style={{ color: C.gold, fontSize: 10, letterSpacing: "4px", textTransform: "uppercase", marginBottom: 14 }}>Explore India</p>
           <h2 className="cg" style={{ fontSize: "clamp(40px,5vw,68px)", fontWeight: 300, color: C.cream, fontStyle: "italic", lineHeight: 1.1 }}>
-            Curated <span style={{ color: C.gold }}>Destinations</span>
+            Popular <span style={{ color: C.gold }}>Destinations</span>
           </h2>
         </motion.div>
         <div className="dest-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14 }}>
@@ -774,6 +985,7 @@ export default function Home() {
       <Hero />
       <Stats />
       <Services />
+      <Packages />
       <Destinations />
       <About />
       <Testimonials />
