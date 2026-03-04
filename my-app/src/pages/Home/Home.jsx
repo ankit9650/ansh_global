@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/travel.png";
+import { useSubmitEnquiryMutation } from "../../redux/service/enquiryApi";
 
 /* ═══════════════════════════════════════════════════════
    PALETTE: Deep Navy #080f24, Royal Blue #1a3468,
@@ -795,12 +796,19 @@ function Testimonials() {
 function Contact() {
   const [form, setForm] = useState({ name: "", phone: "", destination: "", message: "" });
   const [sent, setSent] = useState(false);
-  const submit = e => {
-    e.preventDefault();
-    setSent(true);
-    setForm({ name: "", phone: "", destination: "", message: "" });
-    setTimeout(() => setSent(false), 5000);
-  };
+  const [submitEnquiry, { isLoading, isSuccess, isError, reset }] =
+      useSubmitEnquiryMutation();
+
+  const submit = async (e) => {
+      e.preventDefault();
+      try {
+        await submitEnquiry(form).unwrap();
+        setForm({ name: "", phone: "", destination: "", message: "" });
+        setTimeout(reset, 5000);
+      } catch (err) {
+        console.error("Enquiry failed:", err);
+      }
+    };
   const iStyle = { width: "100%", padding: "13px 16px", background: "rgba(232,238,255,0.05)",
     border: "1px solid rgba(201,168,76,0.18)", borderRadius: 3, color: C.cream,
     fontSize: 14, outline: "none", transition: "border-color 0.3s" };
@@ -843,7 +851,7 @@ function Contact() {
             <div style={{ padding: "44px 38px", background: `linear-gradient(135deg,${C.navyLight},${C.royal})`,
               border: `1px solid rgba(201,168,76,0.15)`, borderRadius: 6, boxShadow: "0 30px 80px rgba(0,0,0,0.25)" }}>
               <AnimatePresence>
-                {sent && (
+                {isSuccess && (
                   <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
                     style={{ marginBottom: 22, padding: "14px 18px", background: "rgba(80,200,120,0.1)",
                       border: "1px solid rgba(80,200,120,0.3)", borderRadius: 3, color: "#6ee7b7",
@@ -880,7 +888,7 @@ function Contact() {
                   style={{ padding: "16px", background: `linear-gradient(135deg,${C.gold},${C.goldDark})`,
                     color: C.navy, fontWeight: 700, fontSize: 12, letterSpacing: "2px", textTransform: "uppercase",
                     border: "none", borderRadius: 3, cursor: "pointer" }}>
-                  ✈ Send Enquiry
+                  {isLoading ? "Sending..." : "✈ Send Enquiry"}
                 </motion.button>
               </form>
             </div>
